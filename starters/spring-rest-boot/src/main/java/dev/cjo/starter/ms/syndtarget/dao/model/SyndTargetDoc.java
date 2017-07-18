@@ -14,7 +14,7 @@ import java.time.ZoneId;
 import java.time.ZonedDateTime;
 
 /**
- * Persistence entity :
+ * Persistence entity : uses elasticsearch specific annotation
  * A target (social account, customer http url)
  */
 //@Entity
