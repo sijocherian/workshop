@@ -18,6 +18,7 @@ import org.springframework.data.elasticsearch.core.ElasticsearchTemplate;
 import org.springframework.data.elasticsearch.core.query.NativeSearchQueryBuilder;
 import org.springframework.data.elasticsearch.core.query.SearchQuery;
 import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
@@ -38,11 +39,11 @@ import static org.junit.Assert.assertTrue;
 //@RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = PersistenceConfig.class)
 @WebAppConfiguration
-/*@TestPropertySource(properties = {
+@TestPropertySource(properties = {
         "elasticsearch.datadir=/tmp/syndicate-data",
         "elasticsearch.home=/tmp/es",
         "server.port=9091"
-})*/
+})
 public class SyndTargetServiceTest {
 
     private String collectionName = "dev-static-junit"; //foir test
