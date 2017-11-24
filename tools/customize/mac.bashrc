@@ -13,6 +13,7 @@ HISTFILE=$HOME/.bash_history
 
 export M2_HOME=/Users/scherian/store/Apps/apache-maven-3.2.3
 #export JAVA_VERSION=1.8
+export GROOVY_HOME=/usr/local/opt/groovy/libexec
 
 export EDITOR=vim
 
