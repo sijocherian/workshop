@@ -7,8 +7,6 @@ import java.time.Month;
 import java.util.*;
 import java.util.concurrent.Callable;
 import java.util.function.BinaryOperator;
-import java.util.function.Consumer;
-import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -32,10 +30,11 @@ public class StreamRuns {
         };
         //filesInDir = ThumbnailFilenameComparator.sort(filesInDir);
 
-        //streamAndSort();
-        streamAndFunctionalInterface();
+        streamAndSort();
+        streamAndLambdaCalls();
 
     }
+
 
     static void streamAndSort() {
 
@@ -47,11 +46,10 @@ public class StreamRuns {
         employees.add(new Employee(435, "Fred", "Shak", LocalDate.of(1988, Month.APRIL, 17)));
         employees.add(new Employee(678, "Ann", "Lee", LocalDate.of(2007, Month.APRIL, 12)));
 
-
         Comparator<Employee> byEmployeeNumber = (e1, e2) -> Integer.compare(
                 e1.getEmployeeNumber(), e2.getEmployeeNumber());
 
-        System.out.println("sort byEmployeeNumber");
+        System.out.println("\nsort byEmployeeNumber");
         List<Employee>  sorted = employees.stream().sorted(byEmployeeNumber).collect(Collectors.toList());
         employees.stream().sorted(byEmployeeNumber)
                 .forEach(e -> System.out.println("\t"+e));
@@ -65,26 +63,54 @@ public class StreamRuns {
 
     }
 
+    static void arraysAndSort() {
+
+        //Reference to an Instance Method of an Arbitrary Object of a Particular Type
+        String[] stringArray = {"Barbara", "James", "Mary", "John",
+                "Patricia", "Robert", "Michael", "Linda"};
+        Arrays.sort(stringArray, String::compareToIgnoreCase);
+
+        Employee[] employees = {
+                new Employee(123, "Jack", "Johnson", LocalDate.of(1988, Month.APRIL, 12)),
+                new Employee(345, "Cindy", "Bower", LocalDate.of(2011, Month.DECEMBER, 15)),
+                new Employee(567, "Perry", "Node", LocalDate.of(2005, Month.JUNE, 07)),
+                new Employee(467, "Pam", "Krauss", LocalDate.of(2005, Month.JUNE, 07)),
+                new Employee(435, "Fred", "Shak", LocalDate.of(1988, Month.APRIL, 17)),
+                new Employee(678, "Ann", "Lee", LocalDate.of(2007, Month.APRIL, 12))
+        };
+
+        //method reference
+        class ComparisonProvider {
+            public int compareByName(Employee a, Employee b) {
+                return a.getEmployeeLastName().compareTo(b.getEmployeeLastName());
+            }
+
+            public int compareByHiredate(Employee a, Employee b) {
+                return a.getHireDate().compareTo(b.getHireDate());
+            }
+        }
+        System.out.println("\nArray Sort by function");
+        ComparisonProvider myComparisonProvider = new ComparisonProvider();
+        Arrays.sort(employees, myComparisonProvider::compareByHiredate);
+
+    }
 
 
-
-
-
-    static void streamAndFunctionalInterface() throws Exception {
+    static void streamAndLambdaCalls() throws Exception {
 
         /*
         Without lambda expressions:
 
-obj.aMethod(new AFunctionalInterface() {
+    obj.aMethod(new AFunctionalInterface() {
     @Override
     public boolean anotherMethod(int i)
     {
         return i == 982
     }
-});
+    });
 
-With lambda expressions:
-obj.aMethod(i -> i == 982);
+    With lambda expressions:
+    obj.aMethod(i -> i == 982);
         */
         ArrayList<String> list = new ArrayList<>();
         list.add("cat");
@@ -299,43 +325,7 @@ obj.aMethod(i -> i == 982);
     }
 
 
-    /*while
-            ateemp++
-            exec
 
-              if failed:
-                 if exeeded boot out
-
-
-               //.info("Retrying operation in " + attemptInterval / 1000L + " seconds");
-              sleep*/
-/*    public static void withRetry(Consumer action) { //Function<? super T, ? super R > action
-        long attemptInterval = 10 * 1000L;
-        int attemptCount=0, maxAttempts=3;
-
-        do {
-            try {
-
-                attemptCount++;
-                action.accept();
-            } catch (Exception e) {
-                // N.B. we can cast to E since it's the only possibility
-                evaluateRetry((E) e, attemptCount, transaction);
-            }
-            try {
-                Thread.sleep(attemptInterval);
-                //Thread.sleep(sleepTime);
-                //sleepTime = Math.min(MAX_SLEEP, sleepTime * 2);
-            } catch (InterruptedException e) {
-                throw new ExecuteException("Waiting to retry an operation is interrupted");
-            }
-            //.info("Retrying operation in " + attemptInterval / 1000L + " seconds");
-
-            new RuntimeException("Maximum attempts exceeded");
-
-
-        } while ( attemptCount <= maxAttempts);
-    }*/
 
     public static class Employee {
 
