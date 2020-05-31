@@ -1,0 +1,53 @@
+{
+  "name": "sample-data-api",
+  "version": "0.0.2",
+  "description": "Sample API REST server",
+  "repository": {
+    "type": "git",
+    "url": "sample"
+  },
+  "keywords": [
+    "data",
+    "restful",
+    "api"
+  ],
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "test": "mocha **/*js"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.18.3",
+    "cors": "^2.8.5",
+    "express": "^4.16.4",
+    "express-validator": "^5.3.1",
+    "jsonwebtoken": "^8.4.0",
+    "log4js": "^5.1.0",
+    "csv-parser": "^1.0.6",
+    "moment": "^2.23.0",
+    "morgan": "^1.9.1"
+  },
+  "devDependencies": {
+    "babel-eslint": "^10.1.0",
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb": "^18.1.0",
+    "eslint-config-airbnb-base": "^14.1.0",
+    "eslint-config-node": "^4.0.0",
+    "eslint-config-prettier": "^6.10.1",
+    "eslint-plugin-import": "^2.20.2",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-prettier": "^3.1.2",
+    "eslint-plugin-react": "^7.19.0",
+    "eslint-plugin-react-hooks": "^2.5.1",
+    "prettier": "1.19.1",
+    "mocha": "*",
+    "chai-http": "*",
+    "chai": "*"
+  },
+  "engines": {
+    "node": ">=10.0.0",
+    "npm": ">=6.13.4"
+  }
+}
